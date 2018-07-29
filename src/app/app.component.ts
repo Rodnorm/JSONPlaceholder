@@ -16,13 +16,12 @@ export class AppComponent implements OnInit{
   dados: Dado;
   filtroPesquisa: string = '';
   ngOnInit(): void{
-    this.getLista();
+    this.getLista();//retorna a lista obtida através do get
   }
   
   getLista(){
     return this.service.listar().subscribe(dado => {
       this.dados = dado;
-      console.log(dado);
     });
 
   }
@@ -31,7 +30,7 @@ export class AppComponent implements OnInit{
       this.service.deleteItem('/'+JSON.stringify(dado.id)).subscribe(data =>{
         alert('O item foi deletado corretamente');
       },
-        (err: HttpErrorResponse) =>{
+        (err: HttpErrorResponse) =>{ //caso algo dê errado
           alert('Ops, algo deu errado');
           console.log(err);
         }

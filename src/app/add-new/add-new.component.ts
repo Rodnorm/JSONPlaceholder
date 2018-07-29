@@ -40,6 +40,8 @@ export class AddNewComponent implements OnInit {
       title: this.title,
       body: this.body
      };
+     //inicio das validações
+     //espera-se que também haja validações no backend :)
      if(this.body == ''){
         alert('Body não pode ser vazio!');
      }else if (this.id == 0){
@@ -49,18 +51,25 @@ export class AddNewComponent implements OnInit {
      }else if(this.title == ''){
       alert('UserId está vazio!');
      }
+     //fim das validações
      this.service.addNew(newDado).subscribe(dddsa =>{
        alert("Um novo item foi adicionado");
+       //deu tudo certo :)
      },
        (err:HttpErrorResponse) =>{
+         //algo deu errado
         alert('Ops, algo deu errado');
         return console.log(err.status);
      } 
     );
+    //reseta os campos para os valores iniciais
     this.userId = 100;
     this.id = 100;
     this.title = '';
     this.body = '';
+    //..
+    //
     this.mostra();
+    //esconde as opções de adicionar novo item
   }
 }
